@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    art_paintings_extractor (0.1.0)
+    art_paintings_extractor (0.1.1)
       nokogiri (~> 1.15)
 
 GEM
