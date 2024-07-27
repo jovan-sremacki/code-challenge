@@ -4,7 +4,6 @@ require_relative 'art_paintings_extractor/version'
 require_relative 'art_paintings_extractor/html_document'
 
 require 'logger'
-require 'base64'
 
 # ArtPaintingsExtractor module
 module ArtPaintingsExtractor
@@ -30,7 +29,7 @@ module ArtPaintingsExtractor
         'name' => extract_name(item),
         'link' => extract_link(item),
         'image' => nil
-        # 'image' => extract_image(item)
+        # 'image' => extract_image(item) ## There was a problem with the image extract
       }
 
       extensions = extract_extensions(item)
