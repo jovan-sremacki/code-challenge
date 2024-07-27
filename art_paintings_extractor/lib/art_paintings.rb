@@ -24,6 +24,9 @@ module ArtPaintingsExtractor
       paintings.map { |item| build_painting_info(item) }
     end
 
+    
+    private
+    
     def build_painting_info(item)
       info = {
         'name' => extract_name(item),
@@ -38,13 +41,8 @@ module ArtPaintingsExtractor
       info
     end
 
-    private
-
     def extract_name(item)
       item['aria-label'] || 'Unknown'
-    rescue NoMethodError
-      @logger.warn("Failed to extract name for item: #{item}")
-      'Unknown'
     end
 
     def extract_extensions(item)
@@ -57,18 +55,11 @@ module ArtPaintingsExtractor
     def extract_link(item)
       href = item['href']
       href ? "https://www.google.com#{href}" : 'No link'
-    rescue NoMethodError
-      @logger.warn("Failed to extract link for item: #{item}")
-      'No link'
     end
 
     def extract_image(item)
       image = item.at_css('g-img > img')
-      image_src = image ? image['src'] : 'No image'
-      image_src || 'No image'
-    rescue NoMethodError
-      @logger.warn("Failed to extract image for item: #{item}")
-      'No image'
+      image ? image['src'] : 'No image'
     end
   end
 end
