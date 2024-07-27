@@ -1,0 +1,15 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+# Specify your gem's dependencies in van_gogh_paintings_extractor.gemspec
+gemspec
+
+gem "rake", "~> 13.0"
+
+gem "nokogiri"
+gem "rspec", "~> 3.12.0"
+
+group :test do
+  gem "rubocop", "~> 1.21"
+end

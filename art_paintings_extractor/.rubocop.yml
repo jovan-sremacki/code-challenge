@@ -1,0 +1,19 @@
+AllCops:
+  TargetRubyVersion: 3.0
+  Exclude:
+    - 'Gemfile'
+    - 'config.ru'
+    - 'spec/spec_helper.rb'
+    - 'bin/*'
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Layout/LineLength:
+  Enabled: false
