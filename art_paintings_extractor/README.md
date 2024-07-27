@@ -1,39 +1,61 @@
-# VanGoghPaintingsExtractor
+# ArtPaintingsExtractor
 
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/van_gogh_paintings_extractor`. To experiment with that code, run `bin/console` for an interactive prompt.
+ArtPaintingsExtractor is a Ruby gem designed to extract painting information from HTML files. The gem uses Nokogiri for parsing HTML and is structured to handle errors gracefully with logging.
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+Add this line to your application's Gemfile:
 
-Install the gem and add to the application's Gemfile by executing:
+```
+gem 'art_paintings_extractor'
+```
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+And then execute: <br>
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+```
+bundle install
+```
 
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+Or install it yourself as:
+
+```
+gem install art_paintings_extractor
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+### Basic usage
 
-## Development
+To use the gem, first require it in your Ruby script:
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+```
+require 'nokogiri'
+require 'art_paintings'
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Then, create an instance of the ArtPaintings class and pass the path to your HTML file:
 
-## Contributing
+```
+html_file = "#{Dir.pwd}/path/to/your/file.html"
+extractor = ArtPaintingsExtractor::ArtPaintings.new(html_file)
+paintings = extractor.extract_paintings
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/van_gogh_paintings_extractor. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/van_gogh_paintings_extractor/blob/master/CODE_OF_CONDUCT.md).
+paintings.each do |painting|
+  puts "Name: #{painting['name']}"
+  puts "Link: #{painting['link']}"
+  puts "Image: #{painting['image']}"
+  puts "Extensions: #{painting['extensions']}"
+  puts "---------------------------"
+end
+```
 
-## License
+### Limitations
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+Currently, the gem may have issues with extracting images that are set via JavaScript.
 
-## Code of Conduct
+### Development
 
-Everyone interacting in the VanGoghPaintingsExtractor project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/van_gogh_paintings_extractor/blob/master/CODE_OF_CONDUCT.md).
+After checking out the repo, run `bin/setup` to install dependencies. Then, run `rspec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+
+To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the .gem file to rubygems.org.
+
